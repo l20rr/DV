@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LYNDATA | Business Intelligence & Consultoria Estratégica</title>
+  
+  <!-- Fonts: Inter & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              black: '#000000',
+              white: '#FFFFFF',
+              bgLight: '#FAFAFA',
+              cardBg: '#FFFFFF',
+              border: '#E5E7EB',
+              borderHover: '#000000',
+              muted: '#6B7280',
+              subtle: '#F3F4F6',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAFAFA;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D1D5DB;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9CA3AF;
+    }
+
+    /* Subtle Lynx Eye Grid Background */
+    .bg-subtle-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    }
+
+    /* Smooth Scroll Fade Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Card Hover Soft Shadows */
+    .clean-card {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .clean-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.06);
+      border-color: #000000;
+    }
+  </style>
+</head>
+<body class="bg-brand-white text-brand-black font-sans antialiased overflow-x-hidden selection:bg-black selection:text-white">
+
+  <!-- ================= HEADER / NAVEGAÇÃO ================= -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Logo Marca LYNDATA (SVG Preto sob Branco) -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none">
+        <div class="relative w-9 h-9 text-black">
+         <img src="./LYNDATA_SIMBOLO.png"/>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-bold text-xl tracking-tight leading-none text-black">LYNDATA</span>
+          <span class="text-[9px] tracking-[0.2em] text-gray-500 uppercase font-semibold mt-1">BUSINESS INTELLIGENCE</span>
+        </div>
+      </a>
+
+      <!-- Menu Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-xs uppercase font-semibold tracking-wider text-gray-600">
+        <a href="#o-que-fazemos" class="hover:text-black transition-colors">O que Fazemos</a>
+        <a href="#publico" class="hover:text-black transition-colors">Visão Externa</a>
+        <a href="#pilares" class="hover:text-black transition-colors">Pilares</a>
+        <a href="#simulador" class="hover:text-black transition-colors">Simulador BI</a>
+      </nav>
+
+      <!-- CTA -->
+      <div class="hidden sm:flex items-center">
+        <a href="#contacto" class="px-5 py-2.5 bg-black text-white text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-gray-800 transition-all duration-200 shadow-sm flex items-center gap-2">
+          <span>Agendar Segunda Opinião</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-black focus:outline-none">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-6 py-6 space-y-4">
+      <a href="#o-que-fazemos" class="block text-sm font-semibold uppercase tracking-wider text-gray-700">O que Fazemos</a>
+      <a href="#publico" class="block text-sm font-semibold uppercase tracking-wider text-gray-700">Visão Externa</a>
+      <a href="#pilares" class="block text-sm font-semibold uppercase tracking-wider text-gray-700">Pilares</a>
+      <a href="#simulador" class="block text-sm font-semibold uppercase tracking-wider text-gray-700">Simulador BI</a>
+      <a href="#contacto" class="w-full mt-4 inline-flex items-center justify-center px-5 py-3 bg-black text-white text-xs font-semibold uppercase tracking-wider rounded-md">
+        Agendar Segunda Opinião
+      </a>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION (Fundo Branco Limpo) ================= -->
+  <section class="relative pt-36 pb-20 md:pt-44 md:pb-32 bg-white bg-subtle-pattern">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Conteúdo Principal -->
+        <div class="lg:col-span-7 space-y-8 text-center lg:text-left reveal">
+            <img src="./LYNDATA_HORIZONTAL.png"/>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gray-100 border border-gray-200 text-xs font-medium text-gray-800">
+            <span class="w-2 h-2 rounded-full bg-black"></span>
+            <span>Segunda Opinião Especializada em Dados</span>
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-6xl font-bold tracking-tight text-black leading-[1.12]">
+            Veja o que a sua equipa interna de dados <span class="underline decoration-1 underline-offset-8 decoration-gray-300">já não consegue ver.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-gray-600 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            A <strong>LYNDATA</strong> aplica o "olho clínico" sobre a sua infraestrutura existente de Business Intelligence, eliminando vícios de análise e transformando relatórios estáticos em decisões de negócio concretas.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#contacto" class="w-full sm:w-auto px-8 py-4 bg-black text-white text-xs font-bold uppercase tracking-wider rounded-md hover:bg-zinc-800 transition-all duration-200 shadow-md flex items-center justify-center gap-3">
+              <span>Pedir Segunda Opinião</span>
+              <i data-lucide="shield-check" class="w-4 h-4"></i>
+            </a>
+
+            <a href="#simulador" class="w-full sm:w-auto px-8 py-4 bg-gray-100 text-black text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-gray-200 transition-all duration-200 border border-gray-200 flex items-center justify-center gap-2">
+              <i data-lucide="play" class="w-3.5 h-3.5"></i>
+              <span>Ver Simulador de Dados</span>
+            </a>
+          </div>
+
+          <!-- Métricas de Isenção -->
+          <div class="pt-8 border-t border-gray-200 grid grid-cols-3 gap-6 max-w-lg mx-auto lg:mx-0 text-left">
+            <div>
+              <div class="font-display text-2xl font-bold text-black">100%</div>
+              <div class="text-xs text-gray-500 font-medium">Isenção Corporativa</div>
+            </div>
+            <div>
+              <div class="font-display text-2xl font-bold text-black">Zero</div>
+              <div class="text-xs text-gray-500 font-medium">Vício de Diagnóstico</div>
+            </div>
+            <div>
+              <div class="font-display text-2xl font-bold text-black">BI + IA</div>
+              <div class="text-xs text-gray-500 font-medium">Visão Estratégica</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Elemento Visual Minimalista (Painel Clínico de BI) -->
+        <div class="lg:col-span-5 relative flex justify-center reveal">
+          <div class="w-full max-w-md bg-white rounded-xl border border-gray-200 p-6 shadow-xl space-y-6 relative overflow-hidden">
+            
+            <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+              <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-gray-300"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-gray-300"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-gray-300"></div>
+                <span class="ml-2 text-xs font-mono text-gray-400">LYNDATA // CLINICAL_AUDIT</span>
+              </div>
+              <span class="text-[10px] font-mono font-bold bg-black text-white px-2 py-0.5 rounded uppercase">Ativo</span>
+            </div>
+
+            <!-- Visual Graph representation -->
+            <div class="space-y-4">
+              <div class="flex justify-between items-end h-28 pt-4 px-2 border-b border-gray-100 gap-3">
+                <div class="w-1/5 bg-gray-100 rounded-t h-[40%]"></div>
+                <div class="w-1/5 bg-gray-100 rounded-t h-[60%]"></div>
+                <div class="w-1/5 bg-gray-200 rounded-t h-[50%]"></div>
+                <!-- Highlight bar: Lynx Vision -->
+                <div class="w-1/5 bg-black rounded-t h-[95%] relative group">
+                  <div class="absolute -top-7 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] font-mono px-1.5 py-0.5 rounded whitespace-nowrap">
+                    Insight Oculto
+                  </div>
+                </div>
+                <div class="w-1/5 bg-gray-100 rounded-t h-[65%]"></div>
+              </div>
+
+              <!-- Key diagnostic note -->
+              <div class="p-3.5 bg-gray-50 rounded-lg border border-gray-200 text-xs space-y-1">
+                <div class="flex items-center justify-between font-semibold text-black">
+                  <span>Anomalia Detetada no Churn</span>
+                  <span class="font-mono text-[10px] bg-black text-white px-1.5 rounded">+14.2% Eficiência</span>
+                </div>
+                <p class="text-gray-500 text-[11px] leading-relaxed">
+                  Ruído operacional filtrado. Identificada oportunidade de retenção ignorada pela equipa interna.
+                </p>
+              </div>
+            </div>
+
+            <div class="text-center pt-1">
+              <span class="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
+                ● Leitura Imparcial em Tempo Real
+              </span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= O QUE FAZEMOS / O CONCEITO ================= -->
+  <section id="o-que-fazemos" class="py-24 bg-brand-bgLight border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Logo Symbol Highlight -->
+        <div class="lg:col-span-5 reveal">
+          <div class="bg-white p-10 rounded-xl border border-gray-200 text-center space-y-6 shadow-sm">
+            <div class="w-24 h-24 mx-auto text-black">
+             <img src="./LYNDATA_HORIZONTAL.png"/>
+            </div>
+            <div class="space-y-2">
+              <h3 class="font-display font-bold text-lg text-black uppercase tracking-wide">O Lince-Ibérico e os Dados</h3>
+              <p class="text-xs text-gray-500 leading-relaxed max-w-xs mx-auto">
+                A visão aguçada e a adaptação do lince inspiram a nossa capacidade de encontrar padrões invisíveis no meio do ruído de dados corporativos.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Text Description -->
+        <div class="lg:col-span-7 space-y-6 reveal">
+          <span class="text-xs font-mono tracking-widest text-gray-500 uppercase">O que é a LYNDATA</span>
+          
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-black tracking-tight">
+            Transformamos dados complexos no "olho clínico" da sua empresa.
+          </h2>
+
+          <p class="text-gray-600 text-base leading-relaxed">
+            A <strong>LYNDATA</strong> é uma plataforma e consultoria especializada de Business Intelligence. Não substituímos a sua equipa de dados — entramos onde a rotina diária e a habituação visual deixam pontos cegos.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-5 bg-white rounded-lg border border-gray-200 space-y-2">
+              <div class="w-7 h-7 rounded bg-black text-white flex items-center justify-center text-xs font-bold">1</div>
+              <h4 class="font-bold text-black text-sm">Perspicácia de Sinal</h4>
+              <p class="text-xs text-gray-500">Detetamos anomalias e oportunidades estratégicas antes que afetem a operação.</p>
+            </div>
+
+            <div class="p-5 bg-white rounded-lg border border-gray-200 space-y-2">
+              <div class="w-7 h-7 rounded bg-black text-white flex items-center justify-center text-xs font-bold">2</div>
+              <h4 class="font-bold text-black text-sm">Absoluta Isenção</h4>
+              <p class="text-xs text-gray-500">Sem guerras entre departamentos. Entregamos a leitura fria e matemática dos factos.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= O PROBLEMA & PÚBLICO-ALVO ================= -->
+  <section id="publico" class="py-24 bg-white border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16 reveal">
+        <span class="text-xs font-mono tracking-widest text-gray-500 uppercase">Público-Alvo & Posicionamento</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-black tracking-tight">
+          Para empresas que já têm relatórios, mas precisam de respostas.
+        </h2>
+        <p class="text-gray-600 text-base">
+          Trabalhamos com organizações que possuem equipas e infraestruturas de BI montadas, mas enfrentam limitações de interpretação e alinhamento executivo.
+        </p>
+      </div>
+
+      <!-- 3 Problem Grid -->
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Card 1 -->
+        <div class="bg-white p-8 rounded-xl border border-gray-200 clean-card space-y-4 reveal">
+          <span class="font-mono text-xs text-gray-400 uppercase tracking-widest">Desafio 01</span>
+          <h3 class="font-display text-xl font-bold text-black">Vícios de Análise Interna</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Após meses a olhar para os mesmos dashboards, as equipas perdem a capacidade de questionar números invulgares e tendências veladas.
+          </p>
+          <div class="pt-4 border-t border-gray-100 flex items-center gap-2 text-xs font-semibold text-black">
+            <i data-lucide="check" class="w-4 h-4 text-black"></i>
+            <span>Diagnóstico externo renovado</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white p-8 rounded-xl border border-gray-200 clean-card space-y-4 reveal">
+          <span class="font-mono text-xs text-gray-400 uppercase tracking-widest">Desafio 02</span>
+          <h3 class="font-display text-xl font-bold text-black">Conflito entre Departamentos</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            O Marketing, as Vendas e as Finanças leem os mesmos relatórios de forma conveniente para defender os seus orçamentos.
+          </p>
+          <div class="pt-4 border-t border-gray-100 flex items-center gap-2 text-xs font-semibold text-black">
+            <i data-lucide="check" class="w-4 h-4 text-black"></i>
+            <span>Leitura única e alinhada</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white p-8 rounded-xl border border-gray-200 clean-card space-y-4 reveal">
+          <span class="font-mono text-xs text-gray-400 uppercase tracking-widest">Desafio 03</span>
+          <h3 class="font-display text-xl font-bold text-black">Grandes Decisões de Risco</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Antes de alocar recursos elevados numa nova estratégia, a administração precisa de confirmar hipóteses com uma segunda opinião.
+          </p>
+          <div class="pt-4 border-t border-gray-100 flex items-center gap-2 text-xs font-semibold text-black">
+            <i data-lucide="check" class="w-4 h-4 text-black"></i>
+            <span>Validação imparcial pré-investimento</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= PILARES DE VALOR ================= -->
+  <section id="pilares" class="py-24 bg-brand-bgLight border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+        <div>
+          <span class="text-xs font-mono tracking-widest text-gray-500 uppercase">Identidade da Marca</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-black mt-2">
+            Os 5 Pilares da LYNDATA
+          </h2>
+        </div>
+        <p class="text-xs text-gray-500 max-w-sm">
+          Princípios rigorosos aplicados a cada projeto de auditoria e extração de dados.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+        
+        <div class="bg-white p-6 rounded-xl border border-gray-200 clean-card space-y-3 reveal">
+          <div class="font-mono text-xs text-gray-400">01</div>
+          <h4 class="font-display font-bold text-base text-black">Perspicácia</h4>
+          <p class="text-xs text-gray-500">Captar os sinais subtis que a concorrência ignora.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-gray-200 clean-card space-y-3 reveal">
+          <div class="font-mono text-xs text-gray-400">02</div>
+          <h4 class="font-display font-bold text-base text-black">Adaptação</h4>
+          <p class="text-xs text-gray-500">Integração com qualquer infraestrutura técnica já existente.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-gray-200 clean-card space-y-3 reveal">
+          <div class="font-mono text-xs text-gray-400">03</div>
+          <h4 class="font-display font-bold text-base text-black">Precisão</h4>
+          <p class="text-xs text-gray-500">Análise matemática rigorosa e livre de ambiguidades.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-gray-200 clean-card space-y-3 reveal">
+          <div class="font-mono text-xs text-gray-400">04</div>
+          <h4 class="font-display font-bold text-base text-black">Visão</h4>
+          <p class="text-xs text-gray-500">Clareza cristalina sobre o cenário futuro da empresa.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-gray-200 clean-card space-y-3 reveal">
+          <div class="font-mono text-xs text-gray-400">05</div>
+          <h4 class="font-display font-bold text-base text-black">Estratégia</h4>
+          <p class="text-xs text-gray-500">Conversão direta de números em plano de ação imediato.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= DEMONSTRAÇÃO / SIMULADOR SIMPLES ================= -->
+  <section id="simulador" class="py-24 bg-white border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center max-w-2xl mx-auto space-y-4 mb-16 reveal">
+        <span class="text-xs font-mono tracking-widest text-gray-500 uppercase">Simulador de Impacto</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-black">
+          Sem Olhar Clínico vs. Com LYNDATA
+        </h2>
+        <p class="text-gray-600 text-sm">
+          Selecione uma área de negócio abaixo para comparar a interpretação interna convencional com o diagnóstico especializado.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto bg-brand-bgLight rounded-2xl border border-gray-200 p-6 md:p-10 shadow-sm reveal">
+        
+        <!-- Tab Selector -->
+        <div class="flex justify-center gap-2 mb-8" id="sim-tabs">
+          <button onclick="switchSim('vendas')" id="tab-vendas" class="px-4 py-2 rounded-md text-xs font-semibold transition-all bg-black text-white shadow-sm">
+            Vendas & Churn
+          </button>
+          <button onclick="switchSim('marketing')" id="tab-marketing" class="px-4 py-2 rounded-md text-xs font-semibold transition-all bg-white text-gray-600 border border-gray-200 hover:border-black">
+            Marketing & CAC
+          </button>
+          <button onclick="switchSim('operacoes')" id="tab-operacoes" class="px-4 py-2 rounded-md text-xs font-semibold transition-all bg-white text-gray-600 border border-gray-200 hover:border-black">
+            Operações & CAPEX
+          </button>
+        </div>
+
+        <!-- Comparison Cards -->
+        <div class="grid md:grid-cols-2 gap-6 items-stretch">
+          
+          <!-- Sem LYNDATA -->
+          <div class="bg-white p-6 rounded-xl border border-gray-200 space-y-4 transition-all duration-300" id="box-before">
+            <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+              <span class="text-xs font-mono text-gray-400 uppercase font-bold">Leitura Interna Habitual</span>
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+            </div>
+            <h4 class="font-display font-bold text-black text-base" id="title-before">Crescimento de Vendas em +12%</h4>
+            <p class="text-xs text-gray-600 leading-relaxed" id="desc-before">
+              A equipa interna celebra o aumento global de faturação e propõe expandir o orçamento comercial no próximo trimestre.
+            </p>
+            <div class="p-3 bg-red-50 text-[11px] text-red-700 rounded border border-red-100" id="alert-before">
+              ⚠️ <strong>Ponto Cego:</strong> O crescimento veio de apenas 1 cliente esporádico. A retenção nos clientes de base caiu 7%.
+            </div>
+          </div>
+
+          <!-- Com LYNDATA -->
+          <div class="bg-white p-6 rounded-xl border border-black space-y-4 shadow-sm transition-all duration-300" id="box-after">
+            <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+              <span class="text-xs font-mono text-black uppercase font-bold">Diagnóstico LYNDATA</span>
+              <span class="w-2 h-2 rounded-full bg-black"></span>
+            </div>
+            <h4 class="font-display font-bold text-black text-base" id="title-after">Reorientação Imediata de Capital</h4>
+            <p class="text-xs text-gray-600 leading-relaxed" id="desc-after">
+              Recomendação: Congelar expansão comercial. Redirecionar recursos para a equipa de sucesso do cliente para estancar a perda velada de base.
+            </p>
+            <div class="p-3 bg-gray-50 text-[11px] text-black font-mono rounded border border-gray-200" id="metric-after">
+              ✓ <strong>Impacto:</strong> Evitada perda anual projetada de 180.000 €.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= FORMULÁRIO DE CONTACTO ================= -->
+  <section id="contacto" class="py-24 bg-brand-bgLight border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Informações à Esquerda -->
+        <div class="lg:col-span-5 space-y-6 reveal">
+          <span class="text-xs font-mono tracking-widest text-gray-500 uppercase">Contacto Direto</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-black tracking-tight">
+            Solicite uma análise preliminar.
+          </h2>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Preencha o formulário para agendarmos uma reunião confidencial de diagnóstico. Avaliamos a sua estrutura com sigilo absoluto.
+          </p>
+
+          <div class="space-y-4 pt-2 text-xs">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded bg-black text-white flex items-center justify-center">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </div>
+              <span class="font-medium text-black">contacto@lyndata.pt</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded bg-black text-white flex items-center justify-center">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+              </div>
+              <span class="font-medium text-black">Acordo de Confidencialidade (NDA) garantido</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulário à Direita -->
+        <div class="lg:col-span-7 reveal">
+          <div class="bg-white p-8 rounded-xl border border-gray-200 shadow-sm">
+            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+              
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-xs font-semibold text-black uppercase tracking-wider mb-2">Nome *</label>
+                  <input type="text" required placeholder="Ex: Lucas Santos" class="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3 text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black transition-colors" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-black uppercase tracking-wider mb-2">Empresa *</label>
+                  <input type="text" required placeholder="Ex: Grupo Industrial" class="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3 text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black transition-colors" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-black uppercase tracking-wider mb-2">E-mail Corporativo *</label>
+                <input type="email" required placeholder="lucas@empresa.com" class="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3 text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black transition-colors" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-black uppercase tracking-wider mb-2">Mensagem / Contexto</label>
+                <textarea rows="4" placeholder="Descreva brevemente a sua estrutura atual de dados ou decisão pendente..." class="w-full bg-gray-50 border border-gray-200 rounded-md px-4 py-3 text-xs text-black placeholder-gray-400 focus:outline-none focus:border-black transition-colors"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-4 bg-black text-white text-xs font-bold uppercase tracking-wider rounded-md hover:bg-zinc-800 transition-all duration-200 flex items-center justify-center gap-2">
+                <span>Enviar Pedido de Contacto</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+
+              <div id="form-msg" class="hidden p-4 rounded bg-gray-100 border border-gray-300 text-center text-xs font-medium text-black">
+                ✓ Pedido recebido com sucesso. Entraremos em contacto brevemente.
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="bg-white py-10 border-t border-gray-200 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-5 h-5 text-black">
+          <img src="./LYNDATA_SIMBOLO.png"/>
+        </div>
+        <span class="font-display font-bold text-black text-sm">LYNDATA</span>
+        <span>— Business Intelligence & Consultoria Estratégica</span>
+      </div>
+
+      <div>
+        &copy; 2026 LYNDATA. Todos os direitos reservados.
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- JavaScript Logic -->
+  <script>
+    // Inicializar ícones Lucide
+    lucide.createIcons();
+
+    // Menu Mobile Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Animações Reveal ao Scroll (Intersection Observer)
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Dados do Simulador
+    const simData = {
+      vendas: {
+        titleB: "Crescimento de Vendas em +12%",
+        descB: "A equipa interna celebra o aumento global de faturação e propõe expandir o orçamento comercial no próximo trimestre.",
+        alertB: "⚠️ <strong>Ponto Cego:</strong> O crescimento veio de apenas 1 cliente esporádico. A retenção nos clientes de base caiu 7%.",
+        titleA: "Reorientação Imediata de Capital",
+        descA: "Recomendação: Congelar expansão comercial. Redirecionar recursos para a equipa de sucesso do cliente para estancar a perda velada de base.",
+        metricA: "✓ <strong>Impacto:</strong> Evitada perda anual projetada de 180.000 €."
+      },
+      marketing: {
+        titleB: "CAC Mais Baixo no Google Ads",
+        descB: "O dashboard de marketing aponta menor custo por aquisição em anúncios pagos e sugere desinvestir nos canais institucionais.",
+        alertB: "⚠️ <strong>Ponto Cego:</strong> Modelo Last-Touch distorcido. Os canais institucionais geravam 60% da consideração inicial.",
+        titleA: "Proteção de Atribuição Multi-Touch",
+        descA: "Recomendação: Manter orçamento orgânico. A interrupção causaria uma queda brutal de 35% no pipeline em 90 dias.",
+        metricA: "✓ <strong>Impacto:</strong> Manutenção da margem operacional real."
+      },
+      operacoes: {
+        titleB: "Capacidade Fabril Limite (90%)",
+        descB: "O departamento operacional solicita a compra imediata de uma nova linha de produção para responder à procura.",
+        alertB: "⚠️ <strong>Ponto Cego:</strong> Gargalo temporário provocado por erro na cadência de matérias-primas, não por falta de máquinas.",
+        titleA: "Otimização de Sequenciamento",
+        descA: "Recomendação: Reorganizar o fluxo de fornecimento sem realizar qualquer investimento em novo equipamento (CAPEX zero).",
+        metricA: "✓ <strong>Impacto:</strong> Poupança imediata de 450.000 € em CAPEX."
+      }
+    };
+
+    function switchSim(key) {
+      const data = simData[key];
+      if (!data) return;
+
+      // Atualizar estado dos botões
+      ['vendas', 'marketing', 'operacoes'].forEach(k => {
+        const tab = document.getElementById(`tab-${k}`);
+        if (k === key) {
+          tab.className = "px-4 py-2 rounded-md text-xs font-semibold transition-all bg-black text-white shadow-sm";
+        } else {
+          tab.className = "px-4 py-2 rounded-md text-xs font-semibold transition-all bg-white text-gray-600 border border-gray-200 hover:border-black";
+        }
+      });
+
+      // Atualizar conteúdos
+      document.getElementById('title-before').innerText = data.titleB;
+      document.getElementById('desc-before').innerText = data.descB;
+      document.getElementById('alert-before').innerHTML = data.alertB;
+
+      document.getElementById('title-after').innerText = data.titleA;
+      document.getElementById('desc-after').innerText = data.descA;
+      document.getElementById('metric-after').innerHTML = data.metricA;
+    }
+
+    // Formulário
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const msg = document.getElementById('form-msg');
+      msg.classList.remove('hidden');
+      e.target.reset();
+      setTimeout(() => {
+        msg.classList.add('hidden');
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
